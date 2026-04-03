@@ -14,12 +14,13 @@ api_hash = config('API_HASH')
 reciever = int(config('RECIEVER'))
 
 client = TelegramClient(
-    'default',
+    'session/default',
     api_id,
     api_hash,
 )
 
 os.makedirs('media/', exist_ok=True)
+os.makedirs('session/', exist_ok=True)
 
 @client.on(events.NewMessage(func=lambda e: e.is_private and (e.photo or e.video and (not e.video_note)) and e.media_unread))
 async def downloader(event):

@@ -1,0 +1,9 @@
+services:
+  sd-saver:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./session:/app/session
+      - ./media:/app/media
+    restart: unless-stopped
